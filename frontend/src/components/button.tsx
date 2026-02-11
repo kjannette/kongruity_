@@ -1,14 +1,15 @@
-type ClusterButtonProps = {
+type ButtonProps = {
   onClick: () => void;
   isLoading: boolean;
+  label: string;
 };
 
-const ClusterButton = ({ onClick, isLoading }: ClusterButtonProps) => {
+const Button = ({ onClick, isLoading, label }: ButtonProps) => {
   return (
     <button onClick={onClick} disabled={isLoading}>
-      {isLoading ? 'Clustering...' : 'Run Clustering'}
+      {isLoading ? 'Working...' : label}
     </button>
   );
 };
 
-export default ClusterButton;
+export default Button;
