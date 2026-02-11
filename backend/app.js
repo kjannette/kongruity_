@@ -7,6 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/notes', notesRoutes);
+app.use('/v1/notes', notesRoutes);
 
 export default app;

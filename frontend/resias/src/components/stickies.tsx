@@ -1,14 +1,20 @@
-import { useState} from "react";  
+import { useGetStickies } from '../api/api';
+import Sticky from './sticky';
+import './stickies.css';
 
-  const Stickies = () => {
-    const isLoading =  useState(false);
-    const error = useState(false);
-    let data: any = [];
+const Stickies = () => {
+  const { data, isLoading, error } = useGetStickies();
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
-    return <div>{data?.map((sticky) => <div key={sticky.id}>{sticky.text}</div>)}</div>;
-  };
+  return (
+    <div className="stickies-grid">
+      {data?.map((sticky) => (
+        <Sticky key={sticky.id} sticky={sticky} />
+      ))}
+    </div>
+  );
+};
 
-  export default Stickies;
+export default Stickies;

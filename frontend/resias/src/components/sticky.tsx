@@ -1,0 +1,43 @@
+import type { Sticky as StickyType } from '../types/types';
+
+const COLOR_MAP: Record<string, string> = {
+  yellow: '#fdfd96',
+  blue: '#a2d2ff',
+  green: '#b5ead7',
+  pink: '#ffb7ce',
+  purple: '#cdb4db',
+  orange: '#ffc09f',
+};
+
+type StickyProps = {
+  sticky: StickyType;
+};
+
+const Sticky = ({ sticky }: StickyProps) => {
+  const backgroundColor = COLOR_MAP[sticky.color] || '#fdfd96';
+
+  return (
+    <div
+      style={{
+        backgroundColor,
+        width: '180px',
+        minHeight: '180px',
+        padding: '16px',
+        borderRadius: '2px',
+        boxShadow: '2px 4px 8px rgba(0, 0, 0, 0.15)',
+        fontFamily: "'Patrick Hand', cursive, system-ui",
+        fontSize: '14px',
+        lineHeight: '1.4',
+        color: '#333',
+        display: 'flex',
+        alignItems: 'flex-start',
+        wordBreak: 'break-word',
+        transform: `rotate(${Math.random() * 4 - 2}deg)`,
+      }}
+    >
+      {sticky.text}
+    </div>
+  );
+};
+
+export default Sticky;
