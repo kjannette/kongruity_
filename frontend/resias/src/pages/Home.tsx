@@ -1,9 +1,10 @@
-
+import Stickies from '../components/stickies';
 
 const Home = () => {
     return (
         <div>
-            <h1>Home</h1>
+            <h1>Resias - </h1>
+            <Stickies />
         </div>
     );
 };
