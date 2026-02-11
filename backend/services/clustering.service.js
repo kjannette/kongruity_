@@ -12,11 +12,11 @@ const buildPrompt = (notes) => {
 
 Below is a JSON array of sticky notes. Each note has an "id" and a "text" field. Analyze the "text" field of every note and group them into meaningful thematic clusters.
 
-Return ONLY a valid JSON array with this exact structure — no markdown, no explanation, no extra text:
+For each cluster, return ONLY a valid JSON array with the below exact structure — no markdown, no explanation, no extra text - where the value for the "label" key is a name you create to describe the cluster's theme and the value for the "noteIds" key is an array containing the Ids of the notes that fit into that cluster theme.
 
 [
   {
-    "label": "Short descriptive theme name",
+    "label": "Short descriptive theme name for cluster",
     "noteIds": ["note_001", "note_002"]
   }
 ]
