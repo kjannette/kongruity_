@@ -1,3 +1,5 @@
+import '../styles/button.css';
+
 type ButtonProps = {
   onClick: () => void;
   isLoading: boolean;
@@ -6,7 +8,7 @@ type ButtonProps = {
 
 const Button = ({ onClick, isLoading, label }: ButtonProps) => {
   return (
-    <button onClick={onClick} disabled={isLoading}>
+    <button className="primaryButton" onClick={onClick} disabled={isLoading}>
       {isLoading ? 'Working...' : label}
     </button>
   );
