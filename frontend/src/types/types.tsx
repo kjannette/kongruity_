@@ -6,3 +6,8 @@ export type Sticky = {
   author: string;
   color: string;
 };
+
+export type Cluster = {
+  label: string;
+  noteIds: string[];
+};
