@@ -1,5 +1,5 @@
 import type { Sticky as StickyType } from '../types/types';
-import './sticky.css';
+import '../styles/sticky.css';
 
 const COLOR_MAP: Record<string, string> = {
   yellow: '#fdfd96',

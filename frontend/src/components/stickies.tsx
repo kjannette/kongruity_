@@ -2,7 +2,7 @@ import { useGetStickies, useClusterStickies } from '../api/api';
 import type { Sticky as StickyType } from '../types/types';
 import Sticky from './sticky';
 import Button from './button';
-import './stickies.css';
+import '../styles/stickies.css';
 
 const Stickies = () => {
   const { data: stickies, isLoading, error } = useGetStickies();
