@@ -1,0 +1,1 @@
+import type { Sticky } from '../types/types';
