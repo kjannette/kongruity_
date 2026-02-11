@@ -5,3 +5,22 @@
   justify-content: center;
   padding: 24px;
 }
+
+.clusters-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px 0;
+}
+
+.cluster-group {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.cluster-label {
+  margin: 0 0 16px 0;
+  font-size: 1.2em;
+  font-weight: 600;
+}

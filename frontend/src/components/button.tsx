@@ -1,11 +1,14 @@
-import { useState } from 'react';
-
-const Button = () => {
-    return (
-        <button>
-            Click me
-        </button>
-    );
+type ClusterButtonProps = {
+  onClick: () => void;
+  isLoading: boolean;
 };
 
-export default Button;
+const ClusterButton = ({ onClick, isLoading }: ClusterButtonProps) => {
+  return (
+    <button onClick={onClick} disabled={isLoading}>
+      {isLoading ? 'Clustering...' : 'Run Clustering'}
+    </button>
+  );
+};
+
+export default ClusterButton;
