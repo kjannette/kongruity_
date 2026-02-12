@@ -25,7 +25,7 @@ const Stickies = () => {
     const stickyMap = buildStickyMap();
 
     return (
-      <div>
+      <div className="stickies-container">
         <div>
           <Button onClick={handleCluster} isLoading={isPending} label="Group Notes By Theme"/>
         </div>
@@ -48,7 +48,7 @@ const Stickies = () => {
 
   return (
     <div>
-      <div>
+      <div className="stickies-container">
         <Button onClick={handleCluster} isLoading={isPending} label="Group Notes By Theme" />
       </div>
       <div className="stickies-grid">

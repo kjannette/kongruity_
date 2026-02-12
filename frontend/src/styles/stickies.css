@@ -6,6 +6,9 @@
   padding: 24px;
 }
 
+.stickies-container {
+  margin: 36px 0px 36px 0px;
+}
 .clusters-container {
   display: flex;
   flex-direction: column;
