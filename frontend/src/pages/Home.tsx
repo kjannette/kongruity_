@@ -1,10 +1,16 @@
 import Stickies from '../components/stickies';
+import '../styles/home.css'
 
 const Home = () => {
     return (
         <div>
             <div className="main-head-box">
-                <h1 className="mainHead">kohngrüti</h1>
+                <div>
+                    <h1 className="mainHead">kohngrüti</h1>
+                </div>
+                <div>
+
+                </div>
             </div>
             <div>
                 <Stickies />
