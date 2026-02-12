@@ -27,7 +27,7 @@ const Stickies = () => {
     return (
       <div className="stickies-container">
         <div>
-          <Button onClick={handleCluster} isLoading={isPending} label="Group Notes By Theme"/>
+          <Button onClick={handleCluster} isLoading={isPending} label="Group Stickies By Topic"/>
         </div>
         <div className="clusters-container">
           {clusters.map((group) => (
