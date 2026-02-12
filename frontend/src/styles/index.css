@@ -56,12 +56,18 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.main-head-box {
+  border-radius: 8px;
+  border: 1px solid #6dd6f4;
+  background-color: rgb(92, 0, 91);
+  display: flex;
+}
 .mainHead {
-  font-size: 4rem;
-  color: #fff;
+  font-size: 5rem;
+  color: #6dd6f4;
   margin: 2px 0px 24px 0px;
   font-family: "Sulphur Point", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: 3px;
   text-decoration: underline;
 }
