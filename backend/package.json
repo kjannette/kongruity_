@@ -1,7 +1,7 @@
 {
-    "name": "resias-backend",
+    "name": "congruity-backend",
     "version": "0.1.0",
-    "description": "Resias AI clustering feature - backend for ProjectPilot",
+    "description": "congruity AI clustering feature - backend for ProjectPilot",
     "type": "module",
     "main": "server.js",
     "scripts": {

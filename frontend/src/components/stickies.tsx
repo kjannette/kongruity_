@@ -1,8 +1,8 @@
 import { useGetStickies, useClusterStickies } from '../api/api';
 import type { Sticky as StickyType } from '../types/types';
 import Sticky from './sticky';
-import ClusterButton from './button';
-import './stickies.css';
+import Button from './button';
+import '../styles/stickies.css';
 
 const Stickies = () => {
   const { data: stickies, isLoading, error } = useGetStickies();
@@ -26,7 +26,9 @@ const Stickies = () => {
 
     return (
       <div>
-        <ClusterButton onClick={handleCluster} isLoading={isPending} />
+        <div>
+          <Button onClick={handleCluster} isLoading={isPending} label="Group Notes By Theme"/>
+        </div>
         <div className="clusters-container">
           {clusters.map((group) => (
             <div key={group.label} className="cluster-group">
@@ -46,7 +48,9 @@ const Stickies = () => {
 
   return (
     <div>
-      <ClusterButton onClick={handleCluster} isLoading={isPending} />
+      <div>
+        <Button onClick={handleCluster} isLoading={isPending} label="Group Notes By Theme" />
+      </div>
       <div className="stickies-grid">
         {stickies?.map((sticky) => (
           <Sticky key={sticky.id} sticky={sticky} />

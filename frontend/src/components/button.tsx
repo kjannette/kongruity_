@@ -1,14 +1,17 @@
-type ClusterButtonProps = {
+import '../styles/button.css';
+
+type ButtonProps = {
   onClick: () => void;
   isLoading: boolean;
+  label: string;
 };
 
-const ClusterButton = ({ onClick, isLoading }: ClusterButtonProps) => {
+const Button = ({ onClick, isLoading, label }: ButtonProps) => {
   return (
-    <button onClick={onClick} disabled={isLoading}>
-      {isLoading ? 'Clustering...' : 'Run Clustering'}
+    <button className="primaryButton" onClick={onClick} disabled={isLoading}>
+      {isLoading ? 'Working...' : label}
     </button>
   );
 };
 
-export default ClusterButton;
+export default Button;
