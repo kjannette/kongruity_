@@ -5,11 +5,11 @@ const Home = () => {
     return (
         <div>
             <div className="main-head-box">
-                <div>
-                    <h1 className="mainHead">kohngrüti</h1>
+                <div className="main-head-subbox-left">
+                    <h1 className="main-head">kohngrüti</h1>
                 </div>
-                <div>
-
+                <div className="main-head-subbox-right">
+                    <span className="material-symbols-outlined">recenter</span>
                 </div>
             </div>
             <div>
