@@ -31,14 +31,11 @@ const mockFetchOk = (data: unknown) =>
 const mockFetchFail = () =>
   Promise.resolve({ ok: false, status: 500, json: () => Promise.resolve({}) } as Response);
 
-
 describe('Stickies', () => {
 
   it('should show a loading indicator while fetching notes', () => {
-    // Fetch never resolves — stays in loading state
     fetchMock.mockReturnValue(new Promise(() => {}));
     const { Wrapper } = createTestWrapper();
-
     render(<Stickies />, { wrapper: Wrapper });
 
     expect(screen.getByText('Loading...')).toBeInTheDocument();
