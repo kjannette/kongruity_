@@ -27,7 +27,6 @@ router.get('/', async (req, res) => {
 router.post('/cluster', async (req, res) => {
   try {
     const notes = await loadNotes();
-    console.log('notes returned from loadNotes', notes)
     const clusters = await clusterNotes(notes);
     res.json(clusters);
   } catch (err) {
