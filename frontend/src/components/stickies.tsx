@@ -49,7 +49,7 @@ const Stickies = () => {
   return (
     <div>
       <div className="stickies-container">
-        <Button onClick={handleCluster} isLoading={isPending} label="Group Notes By Theme" />
+        <Button onClick={handleCluster} isLoading={isPending} label="Group Stickies By Topic" />
       </div>
       <div className="stickies-grid">
         {stickies?.map((sticky) => (

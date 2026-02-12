@@ -9,6 +9,7 @@
 .stickies-container {
   margin: 36px 0px 36px 0px;
 }
+
 .clusters-container {
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@
 }
 
 .cluster-group {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #6dd6f4;
   border-radius: 8px;
   padding: 16px;
 }

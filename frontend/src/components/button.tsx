@@ -8,9 +8,9 @@ type ButtonProps = {
 
 const Button = ({ onClick, isLoading, label }: ButtonProps) => {
   return (
-    <button className="primaryButton" onClick={onClick} disabled={isLoading}>
-      {isLoading ? 'Working...' : label}
-    </button>
+      <button className="primaryButton" onClick={onClick} disabled={isLoading}>
+         {isLoading ? 'Working...' : label}
+      </button>
   );
 };
 

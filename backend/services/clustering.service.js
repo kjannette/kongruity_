@@ -34,11 +34,11 @@ ${notesJson}`;
 
 export const clusterNotes = async (notes) => {
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
-    max_tokens: 4096,
-    messages: [
+   model: "claude-sonnet-4-20250514",
+   max_tokens: 4096,
+   messages: [
       { role: "user", content: buildPrompt(notes) },
-    ],
+   ],
   });
 
   const raw = response.content[0].text;
