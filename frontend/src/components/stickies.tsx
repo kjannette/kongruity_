@@ -24,7 +24,7 @@ const Stickies = () => {
   const stickyMap = buildStickyMap();
 
   const renderStickies = (items: StickyType[]) =>
-    items.map((sticky) => <Sticky key={sticky.id} sticky={sticky} />);
+    items?.map((sticky) => <Sticky key={sticky.id} sticky={sticky} />);
 
   return (
     <div className="stickies-container">
@@ -36,8 +36,8 @@ const Stickies = () => {
               <h3 className="cluster-label">{group.label}</h3>
               <div className="stickies-grid">
                 {renderStickies(
-                  group.noteIds
-                    .map((id) => stickyMap.get(id))
+                  group?.noteIds
+                    .map((id) => stickyMap?.get(id))
                     .filter((s): s is StickyType => !!s)
                 )}
               </div>
