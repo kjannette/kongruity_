@@ -40,7 +40,7 @@
     'opsz' 24
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 478px) {
 
    .main-head-subbox-right {
       display: none;
