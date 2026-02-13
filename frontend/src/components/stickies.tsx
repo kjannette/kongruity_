@@ -23,6 +23,9 @@ const Stickies = () => {
 
   const stickyMap = buildStickyMap();
 
+  const renderStickies = (items: StickyType[]) =>
+    items.map((sticky) => <Sticky key={sticky.id} sticky={sticky} />);
+
   return (
     <div className="stickies-container">
       <Button onClick={handleCluster} isLoading={isPending} label="Group Stickies By Topic" />
@@ -32,19 +35,18 @@ const Stickies = () => {
             <div key={group.label} className="cluster-group">
               <h3 className="cluster-label">{group.label}</h3>
               <div className="stickies-grid">
-                {group.noteIds.map((id) => {
-                  const sticky = stickyMap.get(id);
-                  return sticky ? <Sticky key={sticky.id} sticky={sticky} /> : null;
-                })}
+                {renderStickies(
+                  group.noteIds
+                    .map((id) => stickyMap.get(id))
+                    .filter((s): s is StickyType => !!s)
+                )}
               </div>
             </div>
           ))}
         </div>
       ) : (
         <div className="stickies-grid">
-          {stickies?.map((sticky) => (
-            <Sticky key={sticky.id} sticky={sticky} />
-          ))}
+          {renderStickies(stickies ?? [])}
         </div>
       )}
     </div>
