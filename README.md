@@ -16,7 +16,7 @@ Developers may freely swap in other LLM SDKs and/or APIs... and alter prompt syn
 ## Prerequisites
 
 - Node.js (v18 or later recommended)
-- An [Anthropic API key](https://console.anthropic.com/)
+- An LLM Platform API key
 
 ## Setup
 
@@ -32,10 +32,10 @@ cd kongruity
 The backend expects a `.env` file containing an Anthropic API key in the root `backend/` directory. This file is git-ignored and must be created manually:
 
 ```bash
-echo 'ANTHROPIC_API_KEY=<your Anthropic API key>' > backend/.env
+echo 'LLM_API_KEY=<your LLM API key>' > backend/.env
 ```
 
-Replace `<your Anthropic API key>` with your actual key.
+Replace `<your LLM API key>` with your actual key.
 
 ### 3. Install dependencies
 

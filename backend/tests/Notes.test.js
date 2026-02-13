@@ -115,7 +115,7 @@ describe('POST /v1/notes/cluster', () => {
 
   it('should return 500 when clusterNotes (API call) fails', async () => {
     readFile.mockResolvedValue(JSON.stringify(MOCK_NOTES));
-    clusterNotes.mockRejectedValue(new Error('Anthropic API error'));
+    clusterNotes.mockRejectedValue(new Error('LLM API error'));
 
     const res = await request(app).post('/v1/notes/cluster');
 
