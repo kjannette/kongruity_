@@ -21,14 +21,12 @@ const Stickies = () => {
     return map;
   };
 
-  if (clusters) {
-    const stickyMap = buildStickyMap();
+  const stickyMap = buildStickyMap();
 
-    return (
-      <div className="stickies-container">
-        <div>
-          <Button onClick={handleCluster} isLoading={isPending} label="Group Stickies By Topic"/>
-        </div>
+  return (
+    <div className="stickies-container">
+      <Button onClick={handleCluster} isLoading={isPending} label="Group Stickies By Topic" />
+      {clusters ? (
         <div className="clusters-container">
           {clusters.map((group) => (
             <div key={group.label} className="cluster-group">
@@ -42,20 +40,13 @@ const Stickies = () => {
             </div>
           ))}
         </div>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <div className="stickies-container">
-        <Button onClick={handleCluster} isLoading={isPending} label="Group Stickies By Topic" />
-      </div>
-      <div className="stickies-grid">
-        {stickies?.map((sticky) => (
-          <Sticky key={sticky.id} sticky={sticky} />
-        ))}
-      </div>
+      ) : (
+        <div className="stickies-grid">
+          {stickies?.map((sticky) => (
+            <Sticky key={sticky.id} sticky={sticky} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
