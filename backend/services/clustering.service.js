@@ -1,8 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { anthropicApiKey } from "../.secrets.js";
 
 const client = new Anthropic({
-  apiKey: anthropicApiKey,
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 const buildPrompt = (notes) => {

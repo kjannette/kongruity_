@@ -14,10 +14,6 @@ vi.mock('@anthropic-ai/sdk', () => {
   };
 });
 
-vi.mock('../.secrets.js', () => ({
-  anthropicApiKey: 'test-key-not-real',
-}));
-
 import { clusterNotes } from '../services/clustering.service.js';
 
 const MOCK_NOTES = [
