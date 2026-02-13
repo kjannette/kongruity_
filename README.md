@@ -1,10 +1,10 @@
-# kohngrüti app
+# kongruity app
 
-kohngrüti employs Large Language Model ("LLM") semantic grouping functionality to cluster large volumes of "to dos" or issue tags in development (or other) settings, according to thematic or topical similarity.
+kongruity employs Large Language Model ("LLM") semantic grouping functionality to cluster large volumes of "to dos" or issue tags in development (or other) settings, according to thematic or topical similarity.
 
 (To learn more about this topic, see, e.g., [Kozlowski A., Boutyline A., Semantic Structure in Large Language Model Embeddings Aug. 2025, arXiv:2508.10003v1:04 Aug 2025](https://arxiv.org/html/2508.10003v1)).
 
-In the world of kohngrüti, these "to dos" are called "sticky notes."  kohngrüti's React/Vite UI views a board of seemingly chaotic "sticky notes".  But with one click, they are transformed into manageable, actionable groups, each with a header that explains the group semantic interrelation.
+In the world of kongruity, these "to dos" are called "sticky notes."  kongruity's React/Vite UI views a board of seemingly chaotic "sticky notes".  But with one click, they are transformed into manageable, actionable groups, each with a header that explains the group semantic interrelation.
 
 The backend is an Express API that serves "sticky note" data and proxies semantic grouping requests to Antrhopic Claude.  
 
@@ -20,8 +20,8 @@ Developers may feel free to install other LLM SDKs and alter the syntax at backe
 ### 1. Unzip the project
 
 ```bash
-unzip kohngrüti.zip
-cd kohngrüti
+unzip kongruity.zip
+cd kongruity
 ```
 
 ### 2. Create a secrets file

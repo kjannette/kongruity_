@@ -36,11 +36,11 @@ describe('App routing', () => {
 
   it('should render the Home page on "/"', async () => {
     renderApp('/');
-    expect(await screen.findByText('kohngrüti')).toBeInTheDocument();
+    expect(await screen.findByText('kongruity')).toBeInTheDocument();
   });
 
   it('should redirect unknown routes to Home', async () => {
     renderApp('/some/random/path');
-    expect(await screen.findByText('kohngrüti')).toBeInTheDocument();
+    expect(await screen.findByText('kongruity')).toBeInTheDocument();
   });
 });
