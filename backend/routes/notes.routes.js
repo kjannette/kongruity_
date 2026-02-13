@@ -27,7 +27,7 @@ router.post('/cluster', async (req, res) => {
     res.json(clusters);
   } catch (err) {
     console.error(`Clustering failed: ${err}`);
-    res.status(500).json({ error: `Clustering failed: ${err}` });
+    res.status(500).json({ error: 'Clustering failed' });
   }
 });
 
