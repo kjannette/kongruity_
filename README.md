@@ -24,12 +24,12 @@ unzip kongruity.zip
 cd kongruity
 ```
 
-### 2. Create a secrets file
+### 2. Create an environment file
 
-The backend expects a `.secrets.js` file containing an Anthropic API key in the root `backend/` directory. This file is git-ignored and must be created manually:
+The backend expects a `.env` file containing an Anthropic API key in the root `backend/` directory. This file is git-ignored and must be created manually:
 
 ```bash
-echo 'export const anthropicApiKey = "<your Anthropic API key>"' > backend/.secrets.js
+echo 'ANTHROPIC_API_KEY=<your Anthropic API key>' > backend/.env
 ```
 
 Replace `<your Anthropic API key>` with your actual key.

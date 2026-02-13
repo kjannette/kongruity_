@@ -21,4 +21,4 @@ lerna-debug.log*
 *.sln
 *.sw?
 
-backend/.secrets.js
+backend/.env
