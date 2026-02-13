@@ -20,6 +20,7 @@ router.get('/', async (req, res) => {
     const notes = await loadNotes();
     res.json(notes);
   } catch (err) {
+    console.error(`Error loading notes: ${err}`)
     res.status(500).json({ error: 'Failed to load notes' });
   }
 });
@@ -30,6 +31,7 @@ router.post('/cluster', async (req, res) => {
     const clusters = await clusterNotes(notes);
     res.json(clusters);
   } catch (err) {
+    console.error(`Clustering failed: ${err}` )
     res.status(500).json({ error: `Clustering failed: ${err}` });
   }
 });
