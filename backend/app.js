@@ -11,6 +11,6 @@ app.use('/v1/notes', router);
 
 app.use((req, res) => {
    res.status(404).json({ error: `Requested path is invalid or does not exist: ${req.method} ${req.originalUrl}` });
- });
+});
 
 export default app;

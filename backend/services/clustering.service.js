@@ -40,6 +40,15 @@ export const clusterNotes = async (notes) => {
    ],
   });
 
-  const raw = response.content[0].text;
-  return JSON.parse(raw);
+  const textBlock = response?.content?.[0];
+  
+  if (!textBlock || textBlock.type !== 'text' || typeof textBlock.text !== 'string') {
+    throw new Error('Unexpected response from LLM API: no text content returned');
+  }
+
+  try {
+    return JSON.parse(textBlock.text);
+  } catch {
+    throw new Error('LLM API returned non-JSON response');
+  }
 };

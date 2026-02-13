@@ -35,7 +35,7 @@ describe('clusterNotes service', () => {
 
   it('should call Anthropic messages.create with the correct model', async () => {
     createMock.mockResolvedValue({
-      content: [{ text: JSON.stringify(MOCK_CLUSTERS) }],
+      content: [{ type: 'text', text: JSON.stringify(MOCK_CLUSTERS) }],
     });
 
     await clusterNotes(MOCK_NOTES);
@@ -48,7 +48,7 @@ describe('clusterNotes service', () => {
 
   it('should include all note texts in prompt sent to the LLM API', async () => {
     createMock.mockResolvedValue({
-      content: [{ text: JSON.stringify(MOCK_CLUSTERS) }],
+      content: [{ type: 'text', text: JSON.stringify(MOCK_CLUSTERS) }],
     });
 
     await clusterNotes(MOCK_NOTES);
@@ -62,7 +62,7 @@ describe('clusterNotes service', () => {
 
   it('should parse and return the clustered JSON from the API response', async () => {
     createMock.mockResolvedValue({
-      content: [{ text: JSON.stringify(MOCK_CLUSTERS) }],
+      content: [{ type: 'text', text: JSON.stringify(MOCK_CLUSTERS) }],
     });
 
     const result = await clusterNotes(MOCK_NOTES);
@@ -72,10 +72,16 @@ describe('clusterNotes service', () => {
 
   it('should throw error when the API returns non-JSON', async () => {
     createMock.mockResolvedValue({
-      content: [{ text: 'An unknown error occured when generting structured response.' }],
+      content: [{ type: 'text', text: 'An unknown error occured when generting structured response.' }],
     });
 
-    await expect(clusterNotes(MOCK_NOTES)).rejects.toThrow();
+    await expect(clusterNotes(MOCK_NOTES)).rejects.toThrow('non-JSON response');
+  });
+
+  it('should throw error when the API response has no text content', async () => {
+    createMock.mockResolvedValue({ content: [] });
+
+    await expect(clusterNotes(MOCK_NOTES)).rejects.toThrow('no text content returned');
   });
 
   it('should throw error when Anthropic API authentication fails', async () => {
