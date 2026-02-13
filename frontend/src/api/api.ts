@@ -1,7 +1,7 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import type { Sticky, Cluster } from '../types/types';
 
-const API_BASE = 'http://localhost:3001/v1/notes';
+const API_BASE = `${import.meta.env.VITE_API_BASE}/v1/notes`;
 
 const fetchStickies = async (): Promise<Sticky[]> => {
   const response = await fetch(API_BASE);

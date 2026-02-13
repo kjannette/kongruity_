@@ -7,7 +7,7 @@ import '../styles/stickies.css';
 const Stickies = () => {
   const { data: stickies, isLoading, error } = useGetStickies();
   const { mutate: cluster, data: clusters, isPending } = useClusterStickies();
-
+   console.log('data, error', stickies, error)
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 

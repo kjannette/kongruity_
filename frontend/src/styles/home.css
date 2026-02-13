@@ -39,3 +39,36 @@
     'GRAD' 0,
     'opsz' 24
   }
+
+  @media screen and (max-width: 480px) {
+
+   .main-head-subbox-right {
+      display: none;
+    }
+
+    .main-head-subbox-left {
+      display: flex;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+   .main-head {
+      font-size: 4rem;
+      color: #6dd6f4;
+      font-family: "Sulphur Point", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-decoration: underline;
+    }
+
+    .material-symbols-outlined {
+      display: none !important;
+    }
+  }
