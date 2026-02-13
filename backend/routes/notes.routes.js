@@ -3,7 +3,7 @@ import { readFile } from 'fs/promises';
 import { clusterNotes } from '../services/clustering.service.js';
 
 const router = Router();
-const DATA_PATH = '../data/notes.json';
+const DATA_PATH = new URL('../data/notes.json', import.meta.url);
 
 const loadNotes = async () => {
   const raw = await readFile(DATA_PATH, 'utf-8');
