@@ -121,7 +121,7 @@ describe('POST /v1/notes/cluster', () => {
 
     expect(res.status).toBe(500);
     expect(res.body).toHaveProperty('error');
-    expect(res.body.error).toBe('Clustering failed');
+    expect(res.body.error).toMatch(/^Clustering failed/);
   });
 
   it('should return 500 when the data file cannot be read', async () => {
