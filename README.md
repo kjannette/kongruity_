@@ -8,10 +8,9 @@ In kongruity world, "to dos", action items, agile tickets, Jira comment threads 
 
 kongruity's React/Vite UI displays a board of your team's seemingly chaotic "sticky notes".  But with one click, they are transformed into manageable, actionable groups, each with a header that explains that group's semantic relation.
 
-The backend is an Express API that serves "sticky note" data and proxies semantic grouping requests to Large Language Models.
+The backend features an Express server/API that serves "sticky note" data and proxies semantic grouping requests to Large Language Models.
 
 Developers may freely swap in other LLM SDKs and/or APIs... and alter prompt syntax at backend/services/clustering.service.js to complement R&D with any LLM model/platform they prefer.
-
 
 ## Prerequisites
 
