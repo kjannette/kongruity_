@@ -4,9 +4,7 @@ kongruity clusters large volumes of unstructured action items in development set
 
 In kongruity, "to dos", action items, agile tickets, Jira comments (appropriately tagged) ... all the myriad artifacts of the creative-engineering process, become thematic "sticky notes." 
 
-kongruity's React/Vite UI displays a board of your team's seemingly chaotic "sticky notes".  
-
-They are transformed into manageable, actionable groups, with headers that explains each group's semantic relation, and project magament UI options: ranking temporal priority for future relase goals.
+kongruity's React/Vite UI displays a board of your team's seemingly chaotic "sticky notes" -  transformed into manageable, actionable groups, with headers that explain their semantic relation, and introduces  project management workflow: ranking temporal priority of clusters for future release.
 
 The backend features an Express server/API that serves "sticky note" data and proxies semantic grouping requests to Large Language Models.
 
