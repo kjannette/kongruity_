@@ -16,3 +16,7 @@ export type ClusterResponse = {
   clusters: Cluster[];
   score: number;
 };
+
+export type RankedCluster = Cluster & {
+  rank: number;
+};
