@@ -4,7 +4,7 @@ kongruity pulls in the unstructured artifacts of the creative-engineering proces
 
 In kongruity world, these artifacts are "sticky notes." A board full of them looks chaotic. With one click, an LLM analyzes their meaning and groups them into thematic clusters, each with a descriptive header. 
 
-An independent embedding-based evaluation scores clustering quality, so the output is data-backed. From there, teams can cimply drag-and-rank clusters by implementation priority, turning a wall of noise into an actionable workflow.
+An independent embedding-based evaluation scores clustering quality, so the output is data-backed. From there, teams can simply drag-and-rank clusters by implementation priority, turning noise into an actionable workflow.
 
 ## How it works
 
