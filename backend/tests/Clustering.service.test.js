@@ -1,7 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-const { createMock } = vi.hoisted(() => {
-  return { createMock: vi.fn() };
+const { createMock, mockEmbeddings } = vi.hoisted(() => {
+  const embeddings = new Map([
+    ['note_001', [1.0, 0.0, 0.0]],
+    ['note_002', [0.0, 1.0, 0.0]],
+  ]);
+  return { createMock: vi.fn(), mockEmbeddings: embeddings };
 });
 
 vi.mock('@anthropic-ai/sdk', () => {
@@ -13,6 +17,10 @@ vi.mock('@anthropic-ai/sdk', () => {
     },
   };
 });
+
+vi.mock('../services/embedding.service.js', () => ({
+  embedNotes: vi.fn().mockResolvedValue(mockEmbeddings),
+}));
 
 import { clusterNotes } from '../services/clustering.service.js';
 
@@ -60,14 +68,17 @@ describe('clusterNotes service', () => {
     expect(prompt).toContain('Export fails');
   });
 
-  it('should parse and return the clustered JSON from the API response', async () => {
+  it('should return clusters and a cohesion score', async () => {
     createMock.mockResolvedValue({
       content: [{ type: 'text', text: JSON.stringify(MOCK_CLUSTERS) }],
     });
 
     const result = await clusterNotes(MOCK_NOTES);
 
-    expect(result).toEqual(MOCK_CLUSTERS);
+    expect(result.clusters).toEqual(MOCK_CLUSTERS);
+    expect(typeof result.score).toBe('number');
+    expect(result.score).toBeGreaterThanOrEqual(-1);
+    expect(result.score).toBeLessThanOrEqual(1);
   });
 
   it('should throw error when the API returns non-JSON', async () => {
@@ -88,5 +99,16 @@ describe('clusterNotes service', () => {
     createMock.mockRejectedValue(new Error('401 Unauthorized'));
 
     await expect(clusterNotes(MOCK_NOTES)).rejects.toThrow('401 Unauthorized');
+  });
+
+  it('should throw a validation error when a note is missing from clusters', async () => {
+    const incompleteClusters = [
+      { label: 'Auth Issues', noteIds: ['note_001'] },
+    ];
+    createMock.mockResolvedValue({
+      content: [{ type: 'text', text: JSON.stringify(incompleteClusters) }],
+    });
+
+    await expect(clusterNotes(MOCK_NOTES)).rejects.toThrow('Cluster validation failed');
   });
 });

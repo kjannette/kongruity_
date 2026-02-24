@@ -9,10 +9,13 @@ const MOCK_STICKIES = [
   { id: 'note_002', text: 'Export takes too long', x: 798, y: 211, author: 'user_2', color: 'green' },
 ];
 
-const MOCK_CLUSTERS = [
-  { label: 'Auth Issues', noteIds: ['note_001'] },
-  { label: 'Export Issues', noteIds: ['note_002'] },
-];
+const MOCK_CLUSTER_RESPONSE = {
+  clusters: [
+    { label: 'Auth Issues', noteIds: ['note_001'] },
+    { label: 'Export Issues', noteIds: ['note_002'] },
+  ],
+  score: 0.74,
+};
 
 let fetchMock: ReturnType<typeof vi.fn>;
 
@@ -73,7 +76,7 @@ describe('Stickies', () => {
     // First call = GET notes, second call = POST cluster
     fetchMock
       .mockReturnValueOnce(mockFetchOk(MOCK_STICKIES))
-      .mockReturnValueOnce(mockFetchOk(MOCK_CLUSTERS));
+      .mockReturnValueOnce(mockFetchOk(MOCK_CLUSTER_RESPONSE));
 
     const { Wrapper } = createTestWrapper();
     render(<Stickies />, { wrapper: Wrapper });
@@ -90,7 +93,7 @@ describe('Stickies', () => {
   it('should still render sticky note text inside clusters', async () => {
     fetchMock
       .mockReturnValueOnce(mockFetchOk(MOCK_STICKIES))
-      .mockReturnValueOnce(mockFetchOk(MOCK_CLUSTERS));
+      .mockReturnValueOnce(mockFetchOk(MOCK_CLUSTER_RESPONSE));
 
     const { Wrapper } = createTestWrapper();
     render(<Stickies />, { wrapper: Wrapper });

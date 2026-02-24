@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
-import type { Sticky, Cluster } from '../types/types';
+import type { Sticky, ClusterResponse } from '../types/types';
 
 const API_BASE = `${import.meta.env.VITE_API_BASE}/v1/notes`;
 
@@ -11,7 +11,7 @@ const fetchStickies = async (): Promise<Sticky[]> => {
   return response.json();
 };
 
-const fetchClusters = async (): Promise<Cluster[]> => {
+const fetchClusters = async (): Promise<ClusterResponse> => {
   const response = await fetch(`${API_BASE}/cluster`, {
     method: 'POST',
   });
@@ -29,7 +29,7 @@ export const useGetStickies = () => {
 };
 
 export const useClusterStickies = () => {
-  return useMutation<Cluster[]>({
+  return useMutation<ClusterResponse>({
     mutationFn: fetchClusters,
   });
 };
