@@ -4,11 +4,21 @@ import Sticky from './sticky';
 import Button from './button';
 import '../styles/stickies.css';
 
+const scoreLabel = (score: number): string => {
+  if (score >= 0.7) return 'Strong';
+  if (score >= 0.4) return 'Moderate';
+  if (score >= 0.1) return 'Weak';
+  return 'Poor';
+};
+
 const Stickies = () => {
   const { data: stickies, isLoading, error } = useGetStickies();
-  const { mutate: cluster, data: clusters, isPending } = useClusterStickies();
+  const { mutate: cluster, data: clusterResponse, isPending } = useClusterStickies();
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
+
+  const clusters = clusterResponse?.clusters;
+  const score = clusterResponse?.score;
 
   const handleCluster = () => {
     cluster();
@@ -30,6 +40,11 @@ const Stickies = () => {
       <Button onClick={handleCluster} isLoading={isPending} label="Group Stickies By Topic" />
       {clusters ? (
         <div className="clusters-container">
+          {score != null && (
+            <div className="cohesion-score">
+              Cluster cohesion: <strong>{score.toFixed(2)}</strong> — {scoreLabel(score)}
+            </div>
+          )}
           {clusters.map((group) => (
             <div key={group.label} className="cluster-group">
               <h3 className="cluster-label">{group.label}</h3>

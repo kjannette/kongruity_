@@ -1,4 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { embedNotes } from "./embedding.service.js";
+import { validateStructure, computeCohesionScore } from "./validation.service.js";
 
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -31,7 +33,7 @@ Here are the notes:
 ${notesJson}`;
 };
 
-export const clusterNotes = async (notes) => {
+const requestClusters = async (notes) => {
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4096,
@@ -41,7 +43,7 @@ export const clusterNotes = async (notes) => {
   });
 
   const textBlock = response?.content?.[0];
-  
+
   if (!textBlock || textBlock.type !== 'text' || typeof textBlock.text !== 'string') {
     throw new Error('Unexpected response from LLM API: no text content returned');
   }
@@ -51,4 +53,21 @@ export const clusterNotes = async (notes) => {
   } catch {
     throw new Error('LLM API returned non-JSON response');
   }
+};
+
+export const clusterNotes = async (notes) => {
+  const [clusters, embeddingMap] = await Promise.all([
+    requestClusters(notes),
+    embedNotes(notes),
+  ]);
+
+  const noteIds = notes.map((n) => n.id);
+  const { valid, reasons } = validateStructure(clusters, noteIds);
+  if (!valid) {
+    throw new Error(`Cluster validation failed: ${reasons.join('; ')}`);
+  }
+
+  const score = computeCohesionScore(clusters, embeddingMap);
+
+  return { clusters, score: Math.round(score * 100) / 100 };
 };

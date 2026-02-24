@@ -11,3 +11,8 @@ export type Cluster = {
   label: string;
   noteIds: string[];
 };
+
+export type ClusterResponse = {
+  clusters: Cluster[];
+  score: number;
+};

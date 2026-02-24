@@ -1,12 +1,12 @@
 # kongruity app
 
-kongruity employs Large Language Model ("LLM") semantic grouping to cluster large volumes of "to dos" or issue tags in development settings, by their thematic or topical similarity.
+kongruity clusters large volumes of unstructured action items in development settings by their thematic or topical similarity.
 
-(To learn more about semantic grouping, see, e.g., [Kozlowski A., Boutyline A., Semantic Structure in Large Language Model Embeddings Aug. 2025, arXiv:2508.10003v1:04 Aug 2025](https://arxiv.org/html/2508.10003v1)).
+In kongruity, "to dos", action items, agile tickets, Jira comments (appropriately tagged) ... all the myriad artifacts of the creative-engineering process, become thematic "sticky notes." 
 
-In kongruity world, "to dos", action items, agile tickets, Jira comment threads (tagged for harvesting) ... the myriad artifacts of the creative-engineering process, are "sticky notes." 
+kongruity's React/Vite UI displays a board of your team's seemingly chaotic "sticky notes".  
 
-kongruity's React/Vite UI displays a board of your team's seemingly chaotic "sticky notes".  But with one click, they are transformed into manageable, actionable groups, each with a header that explains that group's semantic relation.
+They are transformed into manageable, actionable groups, with headers that explains each group's semantic relation, and project magament UI options: ranking temporal priority for future relase goals.
 
 The backend features an Express server/API that serves "sticky note" data and proxies semantic grouping requests to Large Language Models.
 

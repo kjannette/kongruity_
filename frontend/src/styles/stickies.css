@@ -29,3 +29,14 @@
   font-size: 1.2em;
   font-weight: 600;
 }
+
+.cohesion-score {
+  text-align: center;
+  font-size: 0.95em;
+  color: #e0e0e0;
+  padding: 8px 16px;
+  background: rgba(109, 214, 244, 0.1);
+  border-radius: 6px;
+  width: fit-content;
+  margin: 0 auto;
+}

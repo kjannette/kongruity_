@@ -23,8 +23,8 @@ router.get('/', async (req, res) => {
 router.post('/cluster', async (req, res) => {
   try {
     const notes = await loadNotes();
-    const clusters = await clusterNotes(notes);
-    res.json(clusters);
+    const result = await clusterNotes(notes);
+    res.json(result);
   } catch (err) {
     console.error(`Clustering failed: ${err}`);
     res.status(500).json({ error: 'Clustering failed' });
