@@ -26,10 +26,10 @@ Developers may swap in other LLM SDKs/APIs and alter prompt syntax in `backend/s
 
 ## Setup
 
-### 1. Unzip the project
+### 1. Clone the repository
 
 ```bash
-unzip kongruity.zip
+git clone https://github.com/kjannette/kongruity_
 cd kongruity
 ```
 
