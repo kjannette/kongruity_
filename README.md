@@ -39,7 +39,7 @@ The backend expects a `.env` file in the `backend/` directory. This file is git-
 
 ```bash
 cat > backend/.env << 'EOF'
-ANTHROPIC_API_KEY=<your Anthropic API key>
+ANTHROPIC_API_KEY=<your Anthropic API key> (or other LLM platform key)
 VOYAGEAI_API_KEY=<your Voyage AI API key>
 EOF
 ```
