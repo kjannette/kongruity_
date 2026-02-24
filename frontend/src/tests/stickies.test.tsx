@@ -73,7 +73,6 @@ describe('Stickies', () => {
   });
 
   it('should show cluster labels after clustering succeeds', async () => {
-    // First call = GET notes, second call = POST cluster
     fetchMock
       .mockReturnValueOnce(mockFetchOk(MOCK_STICKIES))
       .mockReturnValueOnce(mockFetchOk(MOCK_CLUSTER_RESPONSE));
@@ -103,5 +102,42 @@ describe('Stickies', () => {
 
     expect(await screen.findByText('Login flow feels confusing')).toBeInTheDocument();
     expect(screen.getByText('Export takes too long')).toBeInTheDocument();
+  });
+
+  it('should display rank badges on clustered groups', async () => {
+    fetchMock
+      .mockReturnValueOnce(mockFetchOk(MOCK_STICKIES))
+      .mockReturnValueOnce(mockFetchOk(MOCK_CLUSTER_RESPONSE));
+
+    const { Wrapper } = createTestWrapper();
+    render(<Stickies />, { wrapper: Wrapper });
+
+    const btn = await screen.findByRole('button', { name: 'Group Stickies By Topic' });
+    await userEvent.click(btn);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Priority 1')).toBeInTheDocument();
+      expect(screen.getByLabelText('Priority 2')).toBeInTheDocument();
+    });
+  });
+
+  it('should make cluster groups draggable', async () => {
+    fetchMock
+      .mockReturnValueOnce(mockFetchOk(MOCK_STICKIES))
+      .mockReturnValueOnce(mockFetchOk(MOCK_CLUSTER_RESPONSE));
+
+    const { Wrapper } = createTestWrapper();
+    render(<Stickies />, { wrapper: Wrapper });
+
+    const btn = await screen.findByRole('button', { name: 'Group Stickies By Topic' });
+    await userEvent.click(btn);
+
+    await waitFor(() => {
+      const groups = document.querySelectorAll('.cluster-draggable');
+      groups.forEach((group) => {
+        expect(group).toHaveAttribute('draggable', 'true');
+      });
+      expect(groups.length).toBe(2);
+    });
   });
 });

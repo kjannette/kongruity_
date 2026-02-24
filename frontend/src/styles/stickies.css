@@ -24,10 +24,60 @@
   padding: 16px;
 }
 
+.cluster-draggable {
+  cursor: grab;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.cluster-draggable:active {
+  cursor: grabbing;
+}
+
+.cluster-drag-over {
+  border-color: #ffb7ce;
+  box-shadow: 0 0 12px rgba(255, 183, 206, 0.4);
+  transform: scale(1.01);
+}
+
+.cluster-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cluster-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #6dd6f4;
+  color: #1a1a2e;
+  font-weight: 700;
+  font-size: 0.95em;
+  flex-shrink: 0;
+}
+
 .cluster-label {
-  margin: 0 0 16px 0;
+  margin: 0;
   font-size: 1.2em;
   font-weight: 600;
+  flex: 1;
+}
+
+.cluster-drag-handle {
+  font-size: 1.4em;
+  color: #6dd6f4;
+  opacity: 0.4;
+  user-select: none;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cluster-draggable:hover .cluster-drag-handle {
+  opacity: 0.8;
 }
 
 .cohesion-score {
