@@ -2,16 +2,16 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import request from 'supertest';
 import app from '../app.js';
 
+vi.mock('../db/notes.dao.js', () => ({
+  getAllNotes: vi.fn(),
+}));
+
 vi.mock('../services/clustering.service.js', () => ({
   clusterNotes: vi.fn(),
 }));
 
-vi.mock('fs/promises', () => ({
-  readFile: vi.fn(),
-}));
-
+import { getAllNotes } from '../db/notes.dao.js';
 import { clusterNotes } from '../services/clustering.service.js';
-import { readFile } from 'fs/promises';
 
 const MOCK_NOTES = [
   { id: 'note_001', text: 'Login flow feels confusing', x: 193, y: 191, author: 'user_5', color: 'yellow' },
@@ -31,7 +31,7 @@ describe('GET /v1/notes', () => {
   });
 
   it('should return 200 and an array of notes', async () => {
-    readFile.mockResolvedValue(JSON.stringify(MOCK_NOTES));
+    getAllNotes.mockResolvedValue(MOCK_NOTES);
 
     const res = await request(app).get('/v1/notes');
 
@@ -41,7 +41,7 @@ describe('GET /v1/notes', () => {
   });
 
   it('should return notes with expected properties', async () => {
-    readFile.mockResolvedValue(JSON.stringify(MOCK_NOTES));
+    getAllNotes.mockResolvedValue(MOCK_NOTES);
 
     const res = await request(app).get('/v1/notes');
     const note = res.body[0];
@@ -54,23 +54,14 @@ describe('GET /v1/notes', () => {
     expect(note).toHaveProperty('color');
   });
 
-  it('should return 500 when the data file cannot be read', async () => {
-    readFile.mockRejectedValue(new Error('ENOENT: file not found'));
+  it('should return 500 when the database query fails', async () => {
+    getAllNotes.mockRejectedValue(new Error('connection refused'));
 
     const res = await request(app).get('/v1/notes');
 
     expect(res.status).toBe(500);
     expect(res.body).toHaveProperty('error');
     expect(res.body.error).toBe('Failed to load notes');
-  });
-
-  it('should return 500 when data file is invalid JSON', async () => {
-    readFile.mockResolvedValue('{ this is not valid json }');
-
-    const res = await request(app).get('/v1/notes');
-
-    expect(res.status).toBe(500);
-    expect(res.body).toHaveProperty('error');
   });
 });
 
@@ -81,7 +72,7 @@ describe('POST /v1/notes/cluster', () => {
   });
 
   it('should return 200 and clustered results', async () => {
-    readFile.mockResolvedValue(JSON.stringify(MOCK_NOTES));
+    getAllNotes.mockResolvedValue(MOCK_NOTES);
     clusterNotes.mockResolvedValue(MOCK_CLUSTERS);
 
     const res = await request(app).post('/v1/notes/cluster');
@@ -91,7 +82,7 @@ describe('POST /v1/notes/cluster', () => {
   });
 
   it('should return clusters with the expected shape (label, noteIds)', async () => {
-    readFile.mockResolvedValue(JSON.stringify(MOCK_NOTES));
+    getAllNotes.mockResolvedValue(MOCK_NOTES);
     clusterNotes.mockResolvedValue(MOCK_CLUSTERS);
 
     const res = await request(app).post('/v1/notes/cluster');
@@ -104,7 +95,7 @@ describe('POST /v1/notes/cluster', () => {
   });
 
   it('should pass the loaded notes to clusterNotes', async () => {
-    readFile.mockResolvedValue(JSON.stringify(MOCK_NOTES));
+    getAllNotes.mockResolvedValue(MOCK_NOTES);
     clusterNotes.mockResolvedValue(MOCK_CLUSTERS);
 
     await request(app).post('/v1/notes/cluster');
@@ -114,7 +105,7 @@ describe('POST /v1/notes/cluster', () => {
   });
 
   it('should return 500 when clusterNotes (API call) fails', async () => {
-    readFile.mockResolvedValue(JSON.stringify(MOCK_NOTES));
+    getAllNotes.mockResolvedValue(MOCK_NOTES);
     clusterNotes.mockRejectedValue(new Error('LLM API error'));
 
     const res = await request(app).post('/v1/notes/cluster');
@@ -124,8 +115,8 @@ describe('POST /v1/notes/cluster', () => {
     expect(res.body.error).toMatch(/^Clustering failed/);
   });
 
-  it('should return 500 when the data file cannot be read', async () => {
-    readFile.mockRejectedValue(new Error('ENOENT: file not found'));
+  it('should return 500 when the database query fails', async () => {
+    getAllNotes.mockRejectedValue(new Error('connection refused'));
 
     const res = await request(app).post('/v1/notes/cluster');
 
