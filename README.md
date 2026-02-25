@@ -1,10 +1,10 @@
 # kongruity
 
-kongruity pulls in the unstructured artifacts of the creative-engineering process -- to-dos, action items, agile tickets, Jira comment threads, Slack threads, retrospective notes -- and synthesizes them into semantically coherent, prioritized clusters ready for implementation planning.
+kongruity pulls in unstructured artifacts of the creative-engineering process -- to-dos, action items, agile tickets, Jira thread comments, Slack thread comments, retrospective notes -- and synthesizes them into semantically coherent, prioritized clusters that can be incoporated in implementation planning.
 
-In kongruity world, these artifacts are "sticky notes." A board full of them looks chaotic. With a click, an LLM analyzes their semantic meaning and groups them into thematic clusters, each with a descriptive header. 
+In kongruity world, the artifacts become "sticky notes." A board full of them looks chaotic. With a click, the LLM analyzes their semantic meaning and groups them into thematic clusters, each with a descriptive header. 
 
-An independent embedding-based evaluation scores clustering quality, so the output is data-backed. From there, teams can simply drag-and-rank clusters by implementation priority, turning noise into an actionable workflow.
+An independent embedding-based evaluation model scores clustering quality, so the output is qualitatively refined. From there, teams can drag-and-rank related task clusters by implementation priority - turning noise into an actionable workflow.
 
 ## How it works
 
