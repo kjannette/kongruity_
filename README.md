@@ -1,6 +1,6 @@
 # kongruity
 
-kongruity pulls in the unstructured artifacts of the creative-engineering process -- to-dos, action items, agile tickets, Jira comment threads, retrospective notes -- and synthesizes them into semantically coherent, prioritized clusters ready for implementation planning.
+kongruity pulls in the unstructured artifacts of the creative-engineering process -- to-dos, action items, agile tickets, Jira comment threads, Slack threads, retrospective notes -- and synthesizes them into semantically coherent, prioritized clusters ready for implementation planning.
 
 In kongruity world, these artifacts are "sticky notes." A board full of them looks chaotic. With a click, an LLM analyzes their semantic meaning and groups them into thematic clusters, each with a descriptive header. 
 
@@ -21,6 +21,7 @@ Developers may swap in other LLM SDKs/APIs and alter prompt syntax in `backend/s
 ## Prerequisites
 
 - Node.js (v18 or later recommended)
+- PostgreSQL (v14 or later recommended)
 - An [Anthropic API key](https://console.anthropic.com/) (or other LLM platform, for clustering)
 - A [Voyage AI API key](https://dash.voyageai.com/) (for embedding-based evaluation)
 
@@ -41,12 +42,34 @@ The backend expects a `.env` file in the `backend/` directory. This file is git-
 cat > backend/.env << 'EOF'
 ANTHROPIC_API_KEY=<your Anthropic API key> (or other LLM platform key)
 VOYAGEAI_API_KEY=<your Voyage AI API key>
+DATABASE_URL=postgresql://<user>:<password>@localhost:5432/kongruity
 EOF
 ```
 
-Replace placeholder values with your actual keys.
+Replace placeholder values with your actual keys and database credentials.
 
-### 3. Install dependencies
+### 3. Set up the database
+
+Create a PostgreSQL database for the project:
+
+```bash
+createdb kongruity
+```
+
+Run the migration to create tables:
+
+```bash
+cd backend
+npm run db:migrate
+```
+
+Seed the database with the sample sticky notes:
+
+```bash
+npm run db:seed
+```
+
+### 4. Install dependencies
 
 ```bash
 cd backend
