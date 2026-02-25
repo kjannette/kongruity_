@@ -60,6 +60,14 @@
   flex-shrink: 0;
 }
 
+.cluster-reorder-hint {
+  font-size: 0.8em;
+  color: #9ca3af;
+  font-style: italic;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .cluster-label {
   margin: 0;
   font-size: 1.2em;

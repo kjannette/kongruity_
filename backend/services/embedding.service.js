@@ -13,7 +13,7 @@ export const embedNotes = async (notes) => {
 
   const response = await client.embed({
     input: texts,
-    model: "voyage-3-lite",
+    model: "voyage-3",
   });
 
   const embeddingMap = new Map();

@@ -109,6 +109,9 @@ const Stickies = () => {
                 <span className="cluster-rank" aria-label={`Priority ${group.rank}`}>
                   {group.rank}
                 </span>
+                {group.rank === 1 && (
+                  <span className="cluster-reorder-hint">Drag and drop to reorganize cluster priority</span>
+                )}
                 <h3 className="cluster-label">{group.label}</h3>
                 <span className="cluster-drag-handle" aria-hidden="true">⠿</span>
               </div>
