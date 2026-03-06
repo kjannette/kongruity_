@@ -1,6 +1,6 @@
 # kongruity
 
-kongruity pulls in unstructured artifacts of the creative-engineering process -- to-dos, action items, agile tickets, Jira thread comments, Slack thread comments, retrospective notes -- and synthesizes them into semantically coherent, prioritized clusters that can be incoporated into implementation planning.
+kongruity pulls in unstructured artifacts of the creative-engineering process -- to-dos, action items, agile tickets, Jira thread comments, Slack thread comments, retrospective notes -- and synthesizes them into semantically coherent, prioritized clusters that can be incorporated into implementation planning.
 
 In kongruity world, the artifacts become "sticky notes." A board full of them looks chaotic. With a click, the LLM analyzes their semantic meaning and groups them into thematic clusters, each with a descriptive header. 
 
@@ -14,9 +14,14 @@ An independent embedding-based evaluation model scores clustering quality, so th
 4. **Validate** — Structural checks confirm every note is assigned to exactly one cluster, no clusters are empty, and labels are present.
 5. **Prioritize** — Clusters appear ranked and are drag-reorderable. Teams set implementation priority by dragging clusters into position.
 
-## Dev implementation note
+## Dev implementation notes 
 
-Developers may swap in other LLM SDKs/APIs and alter prompt syntax in `backend/services/clustering.service.js` to experiment with any model or platform.
+As of 03.04.2026, two of the above-described features are in the planning and implementation phase:
+
+1. **Ingestion** - The implementation goal is a system for easily tagging items/issues mentioned in Slack, Jira comments, etc. (similar to hashtagging), and running batch "pulls" of these tagged items into kongruity via REST API interface.
+2. **Prioritization** -- The final prioritization and planning stage will ultimately result in "pushing" these ordered items back **out** into Jira, Asana, Rally (etc.), for incorporation into Epic/Sprint workflows. 
+
+Also, developers may swap in other LLM SDKs/APIs and alter prompt syntax in `backend/services/clustering.service.js` to experiment with any model or platform of their choice.
 
 ## Prerequisites
 
@@ -144,3 +149,5 @@ This runs Vitest with jsdom. For watch mode during development:
 ```bash
 npm run test:watch
 ```
+
+
